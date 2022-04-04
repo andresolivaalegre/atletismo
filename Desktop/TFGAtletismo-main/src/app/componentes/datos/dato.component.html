@@ -1,0 +1,38 @@
+<h1>TFG Atletismo</h1>
+
+
+
+<br/>
+
+<div>
+    <label for="valor">Valor</label>
+    <div>
+        <input id="valor" [(ngModel)]="valor"/>
+    </div>  
+    <br/>
+    <div> 
+        <button (click)="insertar()">Insertar</button>
+    </div>
+    
+</div>    
+
+<br/>
+<br/><br/><br/>
+<table>    
+    <thead>
+        <tr>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        <tr *ngFor="let h of listaDatos">
+            <td>{{ h.valor }}</td>
+        </tr>
+        <tr *ngIf="listaDatos.length==0">
+            <td >
+                No se han encontrado valores
+            </td>
+        </tr>
+    </tbody>
+</table> 
