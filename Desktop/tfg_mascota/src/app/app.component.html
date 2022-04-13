@@ -1,0 +1,50 @@
+<div class="contenedor-padre">
+  <mat-toolbar class="barra" color="warn">
+    <mat-toolbar-row>
+      <button (click)="cajon.toggle()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>
+        CRUD Angular con PHP y MySQL&nbsp;
+      </span>
+      <span>
+        <a mat-stroked-button href="https://parzibyte.me/blog">By Parzibyte</a>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container class="contenido">
+    <mat-sidenav style="min-width: 300px;" #cajon mode="side">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/mascotas/agregar">
+          <mat-icon color="accent">add</mat-icon>
+          Agregar mascota
+        </a>
+        <a mat-list-item routerLink="/mascotas">
+          <mat-icon color="primary">pets</mat-icon>
+          Ver mascotas
+        </a>
+      </mat-nav-list>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Más
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-nav-list>
+            <a mat-list-item routerLink="/acerca-de">
+              Acerca de
+            </a>
+            <a mat-list-item href='https://parzibyte.me/blog/contrataciones-ayuda/'>
+              Ayuda
+            </a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-sidenav>
+    <mat-sidenav-content class="padding-10">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
