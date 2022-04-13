@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditarMascotaComponent } from './editar-mascota/editar-mascota.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AcercaDeComponent } from './acerca-de/acerca-de.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { AcercaDeComponent } from './acerca-de/acerca-de.component';
     ListarMascotasComponent,
     DialogoConfirmacionComponent,
     EditarMascotaComponent,
-    AcercaDeComponent
+    AcercaDeComponent,
+    LoginComponent
   ],
   entryComponents: [
     DialogoConfirmacionComponent,
