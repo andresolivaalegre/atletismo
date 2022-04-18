@@ -1,0 +1,14 @@
+<form (ngSubmit)="onLogin()" #formLogin="ngForm">
+
+    <mat-form-field>
+        <input matInput name="correo" [(ngModel)]="usuarioModel.correo" type="text" placeholder="Correo">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput name="contrasena" [(ngModel)]="usuarioModel.contrasena" type="text" placeholder="Contraseña">
+    </mat-form-field>
+
+
+    <button type="submit" mat-flat-button color="accent">Log</button>
+
+</form>
