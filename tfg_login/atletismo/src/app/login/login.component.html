@@ -1,0 +1,37 @@
+
+  <head>
+    <title>Login</title>
+<link rel="stylesheet" href="login.component.css" media="screen">
+  </head>
+  <body class="header">
+
+
+<section class="u-clearfix u-section-1" id="sec-f8ce">
+  <div class="u-align-left u-clearfix u-sheet u-sheet-1">
+    <div class="u-form u-form-1">
+      <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off"
+        class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form"
+        style="padding: 10px;">
+        <div class="u-form-email u-form-group">
+          <label for="email" class="u-label">Email</label>
+          <input type="email" name="email" formControlName="email" autocomplete="off"
+            placeholder="Introduzca una dirección de correo electrónico válida" id="email-a49e"
+            class="u-border-5 u-border-grey-30 u-input u-input-rectangle u-radius-28 u-text-black u-white u-input-1"
+            required="">
+        </div>
+        <div class="u-form-group u-form-group-2">
+          <label for="Password" class="u-label">Contraseña</label>
+          <input type="password" name="Password" formControlName="password" autocomplete="off" placeholder=""
+            id="text-612d"
+            class="u-border-5 u-border-grey-30 u-input u-input-rectangle u-radius-28 u-text-black u-white u-input-2">
+        </div>
+        <div class="u-align-left u-form-group u-form-submit">
+          <button type="submit" class="btn btn-success">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+</body>

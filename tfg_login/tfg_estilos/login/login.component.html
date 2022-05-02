@@ -1,0 +1,23 @@
+<link href="login.component.css"
+    rel="stylesheet" type="text/css">
+
+<body>
+    <div id="divLogin">
+        <div id=form>
+            <div id="titulo"><h2>Introduzca usuario y contraseña</h2></div>
+        
+        <div>
+            <input type="text"  placeholder="Usuario"  [(ngModel)]="mail"/>
+            <br>
+             <input type="password" placeholder="Contraseña" [(ngModel)]="password"/>
+        </div>
+        <div class="row">
+            <input type="submit"  (click)="login()" value="Iniciar Sesion"/>
+            
+        </div>
+        <div id="error">{{errorMessage}}</div>
+        </div>
+    </div>   
+
+</body>
+
