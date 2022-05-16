@@ -6,37 +6,70 @@ import { ApiService } from '../api.service';
 import { Users } from '../users';
 
 @Component({
-selector: 'app-login',
-templateUrl: './login.component.html',
-styleUrls: ['./login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-angForm: FormGroup;
-constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
-this.angForm = this.fb.group({
-email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
-password: ['', Validators.required]
-});
-}
+  angForm: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private dataService: ApiService,
+    private router: Router
+  ) {
+    this.angForm = this.fb.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(1),
+          Validators.pattern(
+            '^[a-z0-9]+(.[_a-z0-9]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,15})$'
+          ),
+        ],
+      ],
+      password: ['', Validators.required],
+    });
+  }
 
-ngOnInit() {
-}
-postdata(angForm1: { value: { email: String; password: String; }; })
-{
-this.dataService.userlogin(angForm1.value.email,angForm1.value.password)
-.pipe(first())
-.subscribe(
-data => {
-const ruta = '/bienvenida'
-const mail=angForm1.value.email
-console.log(mail);
-const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : ruta;
-this.router.navigate([redirect, mail]);
-},
-error => {
-alert("User name or password is incorrect")
-});
-}
-get email() { return this.angForm.get('email'); }
-get password() { return this.angForm.get('password'); }
+  ngOnInit() {}
+  postdata(angForm1: { value: { email: String; password: String } }) {
+    this.dataService
+      .userlogin(angForm1.value.email, angForm1.value.password)
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          const ruta = '/bienvenida';
+          const mail = angForm1.value.email;
+          console.log(mail);
+          const redirect = this.dataService.redirectUrl
+            ? this.dataService.redirectUrl
+            : ruta;
+          this.router.navigate([redirect, mail]);
+        },
+        (error) => {
+          console.log(this.angForm);
+          console.log(this.passwordNoValido);
+          alert('User name or password is incorrect');
+        }
+      );
+  }
+  get email() {
+    return this.angForm.get('email');
+  }
+  get password() {
+    return this.angForm.get('password');
+  }
+
+  get emailNoValido() {
+    return (
+      this.angForm.get('email').invalid && this.angForm.get('email').touched
+    );
+  }
+  get passwordNoValido() {
+    return (
+      this.angForm.get('password').invalid &&
+      this.angForm.get('password').touched
+    );
+  }
 }

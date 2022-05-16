@@ -1,16 +1,16 @@
 <app-head></app-head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-  <div class="collapse navbar-collapse" id="navbarsExample">
-  <div class="navbar-nav mr-auto">
-  <div class="nav-item">
-  <a class="nav-link" *ngIf="loginbtn" routerLink="login" routerLinkActive="active">Login</a>
-  </div>
-  <button type="button" *ngIf="logoutbtn" class="btn btn-block" (click)="logout()">Cerrar Sesion</button>
-  <div class="nav-item">
-  <a class="nav-link" *ngIf="loginbtn" routerLink="registration" routerLinkActive="active">Registrarse</a>
-  </div>
-</div>
-  </div>
-  </nav>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+    <div class="collapse navbar-collapse" id="navbarsExample">
+        <div class="navbar-nav mr-auto">
+            <div class="nav-item">
+                <a class="nav-link" *ngIf="loginbtn" routerLink="login" routerLinkActive="active">Login</a>
+            </div>
+            <button type="button" *ngIf="logoutbtn" class="btn btn-block" (click)="logout()">Cerrar Sesion</button>
+            <div class="nav-item">
+                <a class="nav-link" *ngIf="loginbtn" routerLink="registration" routerLinkActive="active">Registrarse</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
