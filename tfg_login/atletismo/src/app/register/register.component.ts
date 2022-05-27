@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
+import { ApiService } from '../Services/api.service';
 
 @Component({
   selector: 'app-register',

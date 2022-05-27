@@ -6,6 +6,7 @@ import { EntrenadoresComponent } from './entrenadores/entrenadores.component';
 import { AtletasEntrenadorComponent } from './atletas-entrenador/atletas-entrenador.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ListaEntrenadoresComponent } from './listas/lista-entrenadores/lista-entrenadores.component';
 
 
 
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent, 
     EntrenadoresComponent,
-    AtletasEntrenadorComponent
+    AtletasEntrenadorComponent,
+    ListaEntrenadoresComponent
   ],
   imports: [
     BrowserModule,

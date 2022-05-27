@@ -3,11 +3,13 @@ export class Users {
     public name: string;
     public pwd:string;
     public email:string;
-    
-    constructor(Id:number,name: string,pwd:string,email:string) {
+    public entrenador: string;
+
+    constructor(Id:number,name: string,pwd:string,email:string, entrenador:string) {
     this.Id = Id;
     this.name = name;
     this.pwd = pwd;
     this.email = email;
-    }    
+    this.entrenador=entrenador;
+    }
 }

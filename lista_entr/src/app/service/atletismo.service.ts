@@ -7,7 +7,7 @@ import { Atleta } from '../model/Atleta';
   providedIn: 'root'
 })
 export class AtletasService {
-  urlE:string="http://localhost/tfg_login/atletismo/php/GetAllEntrenadores.php";
+  urlE:string="http://localhost/tfg_mascota/tfg_login/atletismo/php/getAllUsers.php";
 
   //url:string="Buscador";
   constructor(private http:HttpClient) { }
@@ -16,11 +16,11 @@ export class AtletasService {
   entrenadores(){
     return this.http.get<Entrenador[]>(this.urlE);
   }
-  
 
 
 
-  
+
+
 
 
 }

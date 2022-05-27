@@ -21,9 +21,12 @@ export class EntrenadoresComponent {
 
   listaEntrenadores(){
     this.entrenadores=[];
-    this.service.entrenadores().subscribe(data=>this.entrenadores=data);
+    this.service.entrenadores().subscribe(data=>{
+      this.entrenadores=data
+      console.log(this.entrenadores);
+    });
   }
 
- 
-  
+
+
 }

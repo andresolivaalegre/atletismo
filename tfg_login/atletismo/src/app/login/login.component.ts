@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ApiService } from '../api.service';
-import { Users } from '../users';
+import { ApiService } from '../Services/api.service';
+import { Users } from '../models/users';
 
 @Component({
   selector: 'app-login',
@@ -39,13 +39,20 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          const ruta = '/bienvenida';
-          const mail = angForm1.value.email;
-          console.log(mail);
-          const redirect = this.dataService.redirectUrl
-            ? this.dataService.redirectUrl
-            : ruta;
-          this.router.navigate([redirect, mail]);
+          console.log(data[0].entrenador);
+          console.log(data[0].id);
+          if(data[0].entrenador==='1'){
+            this.router.navigate(['/listadoEntrenadores']);
+          }else{
+            this.router.navigate(['/calendario',data[0].id ]);
+          }
+          //const ruta = '/bienvenida';
+          //const mail = angForm1.value.email;
+          //console.log(mail);
+          //const redirect = this.dataService.redirectUrl
+          //  ? this.dataService.redirectUrl
+          //  : ruta;
+          //this.router.navigate([redirect, mail]);
         },
         (error) => {
           console.log(this.angForm);

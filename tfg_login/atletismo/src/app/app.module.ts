@@ -8,9 +8,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeadComponent } from './head/head.component';
-import { FooterComponent } from './footer/footer.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+import { ListaEntrenadoresComponent } from './listas/lista-entrenadores/lista-entrenadores.component';
+import { ListaAtletasComponent } from './listas/lista-atletas/lista-atletas.component';
+import { HeadComponent } from './components/head/head.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CalendarioComponent } from './entrenamientos/calendario/calendario.component';
+import { EntrenamientoComponent } from './entrenamientos/entrenamiento/entrenamiento.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,11 @@ import { FooterComponent } from './footer/footer.component';
     RegisterComponent,
     DashboardComponent,
     HeadComponent,
-    FooterComponent
+    FooterComponent,
+    ListaEntrenadoresComponent,
+    ListaAtletasComponent,
+    CalendarioComponent,
+    EntrenamientoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Users } from './users';
+import { Users } from '../models/users';
 
 @Injectable({
   providedIn: 'root',
@@ -51,4 +51,15 @@ export class ApiService {
     }
     return false;
   }
+
+  getAllUsers(){
+    return this.httpClient.get<Users[]>("http://localhost/tfg_mascota/tfg_login/atletismo/php/getAllUsers.php");
+
+  }
+
+  getAllExercises(){
+    return this.httpClient.get<any[]>("http://localhost/tfg_mascota/tfg_login/atletismo/php/getAllExercises.php");
+
+  }
+
 }
