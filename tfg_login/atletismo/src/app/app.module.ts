@@ -14,8 +14,13 @@ import { ListaEntrenadoresComponent } from './listas/lista-entrenadores/lista-en
 import { ListaAtletasComponent } from './listas/lista-atletas/lista-atletas.component';
 import { HeadComponent } from './components/head/head.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CalendarioComponent } from './entrenamientos/calendario/calendario.component';
 import { EntrenamientoComponent } from './entrenamientos/entrenamiento/entrenamiento.component';
+import { CalendarioComponent } from './entrenamientos/calendario/calendario.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,11 @@ import { EntrenamientoComponent } from './entrenamientos/entrenamiento/entrenami
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

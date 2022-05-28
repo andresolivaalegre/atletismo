@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarioComponent implements OnInit {
 
+  selected: Date | null;
+
   constructor() { }
 
   ngOnInit(): void {
