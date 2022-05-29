@@ -62,4 +62,7 @@ export class ApiService {
 
   }
 
+  saveStudent(student) {
+    console.log(JSON.stringify(student));
+  }
 }

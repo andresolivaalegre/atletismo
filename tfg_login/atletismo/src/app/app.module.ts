@@ -21,6 +21,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MomentDateModule } from '@angular/material-moment-adapter';
+
+
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MY_DATE_FORMATS } from './formato-fechas';
 
 @NgModule({
   declarations: [
@@ -46,8 +52,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatNativeDateModule,
     MatCardModule,
     MatDatepickerModule,
+    MatInputModule,
+    MomentDateModule,
   ],
-  providers: [],
+  providers: [{provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
