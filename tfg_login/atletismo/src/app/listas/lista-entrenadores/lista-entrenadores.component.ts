@@ -17,6 +17,7 @@ export class ListaEntrenadoresComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('idEntrenador');
     this.listadoEntrenadores();
   }
 
@@ -35,7 +36,8 @@ export class ListaEntrenadoresComponent implements OnInit {
 
   verListaAtletas(idEntrenador){
     console.log(idEntrenador);
-    this.router.navigate(['/listadoAtletas', idEntrenador]);
+    localStorage.setItem('idEntrenador', idEntrenador);
+    this.router.navigate(['/listadoAtletas']);
   }
 
 

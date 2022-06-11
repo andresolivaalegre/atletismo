@@ -11,31 +11,36 @@ export class CalendarioComponent implements OnInit {
   seleccionado: boolean= false;
   fecha: any;
   fechaString: string;
-  id:number;
+  id:any;
   idAtleta:any;
 
   constructor(private activatedRoute:ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params['id'];
+    localStorage.removeItem('idAtleta');
+    this.id = localStorage.getItem('sessionId');
+    console.log(this.id);
     this.idAtleta = this.activatedRoute.snapshot.queryParamMap.get('idAtleta')||0;;
     console.log(this.idAtleta);
   }
 
   verEntrenamiento(){
-    console.log(this.id, this.fechaString);
     if (this.idAtleta==0) {
-          this.router.navigate(['/entrenamiento', this.id, this.fechaString, false ]);
+      localStorage.setItem('idAtleta', this.id);
+      this.router.navigate(['/entrenamiento', this.fechaString, false ]);
     }else{
-      this.router.navigate(['/entrenamiento', this.idAtleta, this.fechaString, false ]);
+      localStorage.setItem('idAtleta', this.idAtleta);
+      this.router.navigate(['/entrenamiento', this.fechaString, false ]);
     }
   }
 
   editarEntrenamiento(){
     if (this.idAtleta==0) {
-          this.router.navigate(['/entrenamiento', this.id, this.fechaString, true ]);
+      localStorage.setItem('idAtleta', this.id);
+      this.router.navigate(['/entrenamiento', this.fechaString, true ]);
     }else{
-      this.router.navigate(['/entrenamiento', this.idAtleta, this.fechaString, true ]);
+      localStorage.setItem('idAtleta', this.idAtleta);
+      this.router.navigate(['/entrenamiento', this.fechaString, true ]);
     }
   }
 

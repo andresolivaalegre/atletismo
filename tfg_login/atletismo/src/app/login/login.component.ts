@@ -39,12 +39,13 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
+          localStorage.setItem('sessionId', data[0].id)
           console.log(data[0].entrenador);
           console.log(data[0].id);
           if(data[0].entrenador==='1'){
             this.router.navigate(['/listadoEntrenadores']);
           }else{
-            this.router.navigate(['/calendario',data[0].id ]);
+            this.router.navigate(['/calendario']);
           }
           //const ruta = '/bienvenida';
           //const mail = angForm1.value.email;

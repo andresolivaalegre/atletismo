@@ -31,5 +31,6 @@ export class AppComponent {
     this.dataService.deleteToken();
     this.changeName(false);
     this.router.navigate(['/login']);
+    localStorage.clear();
   }
 }

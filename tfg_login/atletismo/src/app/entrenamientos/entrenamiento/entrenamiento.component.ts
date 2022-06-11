@@ -28,7 +28,8 @@ export class EntrenamientoComponent implements OnInit {
     if(this.editar=='true'){
       this.disabled=false
     }
-    this.id = this.activatedRoute.snapshot.params['id'];
+    this.id = localStorage.getItem('idAtleta');
+    console.log(this.id);
     this.fecha = this.activatedRoute.snapshot.params['fecha'];
 
     this.listadoEjercicios();
