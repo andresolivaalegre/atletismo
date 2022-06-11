@@ -12,20 +12,31 @@ export class CalendarioComponent implements OnInit {
   fecha: any;
   fechaString: string;
   id:number;
+  idAtleta:any;
 
   constructor(private activatedRoute:ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params['id'];
+    this.idAtleta = this.activatedRoute.snapshot.queryParamMap.get('idAtleta')||0;;
+    console.log(this.idAtleta);
   }
 
   verEntrenamiento(){
     console.log(this.id, this.fechaString);
-    this.router.navigate(['/entrenamiento', this.id, this.fechaString, false ]);
+    if (this.idAtleta==0) {
+          this.router.navigate(['/entrenamiento', this.id, this.fechaString, false ]);
+    }else{
+      this.router.navigate(['/entrenamiento', this.idAtleta, this.fechaString, false ]);
+    }
   }
 
   editarEntrenamiento(){
-    this.router.navigate(['/entrenamiento', this.id, this.fechaString, true ]);
+    if (this.idAtleta==0) {
+          this.router.navigate(['/entrenamiento', this.id, this.fechaString, true ]);
+    }else{
+      this.router.navigate(['/entrenamiento', this.idAtleta, this.fechaString, true ]);
+    }
   }
 
   dateChanged(date) {
