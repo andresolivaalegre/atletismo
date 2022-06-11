@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'registration', component: RegisterComponent },
   { path: 'listadoEntrenadores', component:ListaEntrenadoresComponent},
-  { path: 'listadoAtletas', component: ListaAtletasComponent},
+  { path: 'listadoAtletas/:id', component: ListaAtletasComponent},
   { path: 'entrenamiento/:id/:date/:editar', component: EntrenamientoComponent},
   { path: 'calendario/:id', component: CalendarioComponent},
   {

@@ -65,4 +65,11 @@ export class ApiService {
   saveStudent(student) {
     console.log(JSON.stringify(student));
   }
+
+  getEntrenamiento(id:string, fecha:string){
+    return this.httpClient.get<any[]>(`http://localhost/tfg_mascota/tfg_login/atletismo/php/getEntrenamiento.php?usuario_id=${id}?fecha=${fecha}`)
+  }
+  getListadoAtletas(){
+    return this.httpClient.get<any[]>(`http://localhost/tfg_mascota/tfg_login/atletismo/php/getListadoAtletas.php`)
+  }
 }

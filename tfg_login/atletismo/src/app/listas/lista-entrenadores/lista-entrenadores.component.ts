@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Users } from 'src/app/models/users';
 import { ApiService } from '../../Services/api.service';
 
@@ -13,7 +14,7 @@ export class ListaEntrenadoresComponent implements OnInit {
   entrenadores: Users[]= [];
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.listadoEntrenadores();
@@ -30,6 +31,11 @@ export class ListaEntrenadoresComponent implements OnInit {
       }
       console.log(this.entrenadores);
     })
+  }
+
+  verListaAtletas(idEntrenador){
+    console.log(idEntrenador);
+    this.router.navigate(['/listadoAtletas', idEntrenador]);
   }
 
 

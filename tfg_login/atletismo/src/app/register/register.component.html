@@ -7,7 +7,7 @@
             <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
 
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Nombre</label>
                     <input class="form-control" [class.is-invalid]="nameNoValido" type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name">
                     <small class="text-danger" *ngIf="nameNoValido"> Introduzca un nombre</small>
                 </div>
@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Password">Password</label>
+                    <label for="Password">Contraseña</label>
                     <input class="form-control" [class.is-invalid]="passwordNoValido" type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password">
                     <small class="text-danger" *ngIf="passwordNoValido"> Introduzca una contraseña</small>
 

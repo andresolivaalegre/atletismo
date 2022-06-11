@@ -21,23 +21,30 @@ export class CalendarioComponent implements OnInit {
 
   verEntrenamiento(){
     console.log(this.id, this.fechaString);
-    this.router.navigate(['/entrenamiento', this.id, this.fechaString, 'false' ]);
+    this.router.navigate(['/entrenamiento', this.id, this.fechaString, false ]);
   }
 
   editarEntrenamiento(){
-    this.router.navigate(['/entrenamiento', this.id, this.fechaString, 'true' ]);
+    this.router.navigate(['/entrenamiento', this.id, this.fechaString, true ]);
   }
 
   dateChanged(date) {
     console.log(date.value._i);
     this.seleccionado= true;
     this.fecha=date.value._i;
-    console.log(this.setFechaString(this.fecha));
     this.fechaString=this.setFechaString(this.fecha);
+    console.log(this.fechaString);
 
   }
 
   setFechaString(fecha){
+    if (fecha.month<10|| fecha.month>0) {
+      fecha.month = `0${fecha.month}`;
+    }
+    if (fecha.date<10||fecha.date>0) {
+      fecha.date=`0${fecha.date}`;
+    }
+
     let fechaNew= `${fecha.year}-${fecha.month}-${fecha.date}`;
     return fechaNew;
   }
