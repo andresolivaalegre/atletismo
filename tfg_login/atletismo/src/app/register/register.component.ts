@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   postdata(angForm1: { value: { name: any; email: any; password: any } }) {
+
     this.dataService
       .userregistration(
         angForm1.value.name,
@@ -51,11 +52,14 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.router.navigate(['login']);
+          this.router.navigate(['login']); //boton a lista de entrenadores
         },
 
         (error) => {}
       );
+
+      //get usuarios, pillamos el id
+      //post hacioa la tabla de los grupos con el id del atleta, el del entrenador del grupo y en nombre del atleta
   }
 
   get email() {
