@@ -1,15 +1,194 @@
-<h2>
-    Entrenamiento</h2>
-
+<!--
 <form>
     <div class="form-group row mb-4" *ngFor="let ejercicio of ejercicios">
         <label class="col-2 col-form-label">{{ejercicio.nombre}}</label>
-        <div class="col-8">
+        <div class="col-8" *ngFor="let entrenamiento of entrenamientos">
+            <input *ngIf="entrenamiento.ejercicio_id== ejercicio.id_ejercicio" [disabled]="disabled" class="form-control" name="nombre" [placeholder]="entrenamiento.valor">
 
-            <input [disabled]="disabled" class="form-control" name="nombre" placeholder="Valor">
         </div>
     </div>
     <div class="form-group ml-7">
         <button [disabled]="disabled" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form> -->
+<!--
+<mat-form-field hintLabel="Max 10 characters" appearance="fill">
+    <mat-label>Enter some input</mat-label>
+    <input matInput #input maxlength="10" placeholder="Ex. Nougat">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Select me</mat-label>
+    <mat-select>
+        <mat-option value="option">Option</mat-option>
+    </mat-select>
+    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+</mat-form-field>
+-->
+
+<h1>Entrenamiento <small>{{fecha}}</small> </h1>
+<form (ngSubmit)="guardarinfo(entreno)" autocomplete="off" name="formularioEntreno" [formGroup]="formularioEntreno">
+
+    <h2>Rodaje</h2>
+    <div class="form-group row mb-4" formGroupName="rodaje">
+
+        <label class="col-2 col-form-label">Kilómetros recorridos</label>
+        <div class="col">
+            <input class="form-control" type="text" formControlName="km" placeholder="2.5" [value]="entreno.rodaje.km">
+        </div>
+
+
+        <label class="col-2 col-form-label">Tiempo en minutos</label>
+        <div class="col">
+            <input class="form-control" type="text" formControlName="tiempo" placeholder="15" [value]="entreno.rodaje.tiempo">
+        </div>
+
+
+        <label class="col-2 col-form-label">Comentarios</label>
+        <div class="col">
+            <input class="form-control" type="text" formControlName="comentarios" placeholder="2.5" [value]="entreno.rodaje.comentarios">
+        </div>
+
+    </div>
+
+
+
+    <h2>pista</h2>
+    <div class="form-group row mb-4" formGroupName="pista">
+        <div class="form-group row mb-4 ml-3" formGroupName="series">
+            <h4>Series</h4>
+
+            <label class="col-2 col-form-label">Número de series</label>
+            <div class="col">
+                <input class="form-control" type="text" formControlName="numero" placeholder="4" [value]="entreno.pista.series.numero">
+            </div>
+
+
+            <label class="col-2 col-form-label">Distancia en metros</label>
+            <div class="col">
+                <input class="form-control" type="text" formControlName="distancia" placeholder="100" [value]="entreno.pista.series.distancia">
+            </div>
+
+
+            <label class="col-2 col-form-label">Tiempo en segundos</label>
+            <div class="col">
+                <input class="form-control" type="text" formControlName="tiempo" placeholder="12.5" [value]="entreno.pista.series.tiempo">
+            </div>
+
+
+            <label class="col-2 col-form-label">Descanso en minutos</label>
+            <div class="col">
+                <input class="form-control" type="text" formControlName="descanso" placeholder="2" [value]="entreno.pista.series.descanso">
+            </div>
+        </div>
+
+        <div class="form-group row mb-4 ml-3" formGroupName="multisalto">
+            <h4>Multisaltos</h4>
+
+            <label class="col-2 col-form-label">Segundos de triple</label>
+            <div class="col">
+                <input class="form-control" type="text" formControlName="segundosTriple" placeholder="2.5" [value]="entreno.pista.multisalto.segundosTriple">
+            </div>
+
+
+            <label class="col-2 col-form-label">Número de series</label>
+            <div class="col">
+                <input class="form-control" type="text" formControlName="numero" placeholder="4" [value]="entreno.pista.multisalto.numero">
+            </div>
+
+
+            <label class="col-2 col-form-label">Descanso en minutos</label>
+            <div class="col">
+                <input class="form-control" type="text" formControlName="descanso" placeholder="2" [value]="entreno.pista.multisalto.descanso">
+            </div>
+
+        </div>
+
+        <h4>Comentarios</h4>
+        <input class="form-control" type="text" formControlName="comentarios" maxlength="150" placeholder="2.5" [value]="entreno.pista.comentarios">
+    </div>
+
+
+
+    <h2>Fuerza</h2>
+
+    <div class="form-group row mb-4" formGroupName="gimnasio">
+        <div class="form-group row mb-1" formGroupName="tipo">
+            <div class="form-group row mb-1" formGroupName="pectoral">
+
+                <label class="col-2 col-form-label">Número de repeticiones</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="repeticiones" placeholder="4x10" [value]="entreno.gimnasio.tipo.pectoral.repeticiones">
+                </div>
+
+
+                <label class="col-2 col-form-label">Kilos</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="kg" placeholder="12.5" [value]="entreno.gimnasio.tipo.pectoral.kg">
+                </div>
+
+
+                <label class="col-2 col-form-label">descanso en minutos</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="descanso" placeholder="2.5" [value]="entreno.gimnasio.tipo.pectoral.descanso">
+                </div>
+            </div>
+
+
+            <div class="form-group row mb-1" formGroupName="biceps">
+
+                <label class="col-2 col-form-label">Número de repeticiones</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="repeticiones" placeholder="4x10" [value]="entreno.gimnasio.tipo.biceps.repeticiones">
+                </div>
+
+
+                <label class="col-2 col-form-label">Kilos</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="kg" placeholder="12.5" [value]="entreno.gimnasio.tipo.biceps.kg">
+                </div>
+
+
+                <label class="col-2 col-form-label">descanso en minutos</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="descanso" placeholder="2.5" [value]="entreno.gimnasio.tipo.biceps.descanso">
+                </div>
+            </div>
+
+
+            <div class="form-group row mb-1" formGroupName="cuadriceps">
+
+                <label class="col-2 col-form-label">Número de repeticiones</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="repeticiones" placeholder="4x10" [value]="entreno.gimnasio.tipo.cuadriceps.repeticiones">
+                </div>
+
+
+                <label class="col-2 col-form-label">Kilos</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="kg" placeholder="12.5" [value]="entreno.gimnasio.tipo.cuadriceps.kg">
+                </div>
+
+
+                <label class="col-2 col-form-label">descanso en minutos</label>
+                <div class="col">
+                    <input class="form-control" type="text" formControlName="descanso" placeholder="2.5" [value]="entreno.gimnasio.tipo.cuadriceps.descanso">
+                </div>
+            </div>
+
+        </div>
+        <label class="col-2 col-form-label">Comentarios</label>
+        <div class="col">
+            <input class="form-control" type="text" formControlName="comentarios" maxlength="150" placeholder="2.5" [value]="entreno.gimnasio.comentarios">
+        </div>
+
+    </div>
+
+
+    <div>
+        <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
     </div>
 </form>

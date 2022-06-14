@@ -13,3 +13,7 @@
     <button (click)="verEntrenamiento()" *ngIf="seleccionado" class="btn btn-success">Ver entrenamiento</button>
     <button (click)="editarEntrenamiento()" *ngIf="seleccionado" class="btn btn-info">Insertar/Editar entrenamiento</button>
 </div>
+
+<div *ngIf="mostrar">
+    <app-entrenamiento></app-entrenamiento>
+</div>

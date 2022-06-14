@@ -25,8 +25,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 
 
+
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './formato-fechas';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { MY_DATE_FORMATS } from './formato-fechas';
     MatDatepickerModule,
     MatInputModule,
     MomentDateModule,
+    FormsModule,
+    MatSelectModule,
   ],
   providers: [{provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}],
   bootstrap: [AppComponent]

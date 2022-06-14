@@ -1,9 +1,9 @@
 export class Ejercicios{
-    public Id: number;
+    public id_ejercicio: number;
     public nombre: string;
 
-    constructor(Id:number,nombre: string) {
-    this.Id = Id;
+    constructor(id_ejercicio:number,nombre: string) {
+    this.id_ejercicio = id_ejercicio;
     this.nombre = nombre;
 
     }

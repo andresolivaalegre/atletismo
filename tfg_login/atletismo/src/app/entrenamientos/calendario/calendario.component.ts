@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./calendario.component.css']
 })
 export class CalendarioComponent implements OnInit {
-
+  mostrar: boolean= false;
   seleccionado: boolean= false;
   fecha: any;
   fechaString: string;
@@ -25,6 +25,7 @@ export class CalendarioComponent implements OnInit {
   }
 
   verEntrenamiento(){
+    this.mostrar=true;
     if (this.idAtleta==0) {
       localStorage.setItem('idAtleta', this.id);
       this.router.navigate(['/entrenamiento', this.fechaString, false ]);
@@ -35,6 +36,7 @@ export class CalendarioComponent implements OnInit {
   }
 
   editarEntrenamiento(){
+    this.mostrar=true;
     if (this.idAtleta==0) {
       localStorage.setItem('idAtleta', this.id);
       this.router.navigate(['/entrenamiento', this.fechaString, true ]);
@@ -54,10 +56,11 @@ export class CalendarioComponent implements OnInit {
   }
 
   setFechaString(fecha){
-    if (fecha.month<10|| fecha.month>0) {
-      fecha.month = `0${fecha.month}`;
+    if (fecha.month<10&& fecha.month>=0) {
+      fecha.month = `0${fecha.month +1}`;
     }
-    if (fecha.date<10||fecha.date>0) {
+    if (fecha.date<10&&fecha.date>0) {
+      console.log(fecha.date);
       fecha.date=`0${fecha.date}`;
     }
 
