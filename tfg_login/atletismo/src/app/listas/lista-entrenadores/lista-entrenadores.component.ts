@@ -34,6 +34,10 @@ export class ListaEntrenadoresComponent implements OnInit {
     })
   }
 
+  registro(){
+    this.router.navigate(['/registration']);
+  }
+
   verListaAtletas(idEntrenador){
     console.log(idEntrenador);
     localStorage.setItem('idEntrenador', idEntrenador);

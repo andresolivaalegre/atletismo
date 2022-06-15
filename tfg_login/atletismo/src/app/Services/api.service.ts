@@ -52,6 +52,10 @@ export class ApiService {
     return false;
   }
 
+  isAdmin(){
+   return true;
+  }
+
   getAllUsers(){
     return this.httpClient.get<Users[]>("http://localhost/tfg_mascota/tfg_login/atletismo/php/getAllUsers.php");
 
