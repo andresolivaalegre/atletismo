@@ -3,6 +3,7 @@ import { ApiService } from '../../Services/api.service';
 import { Ejercicios } from '../../models/ejercicios';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-entrenamiento',
@@ -58,16 +59,8 @@ export class EntrenamientoComponent implements OnInit {
       comentarios:''
     }
   };
-  //rodajecheck:boolean;
-  //pista:boolean;
-  //series:boolean;
-  //multi:boolean;
-  //fuerza:boolean;
-  //pectoral:boolean;
-  //biceps:boolean;
-  //cuadriceps:boolean;
 
-  //entreno:Entreno;
+
 
   formularioEntreno: FormGroup;
 
@@ -90,6 +83,8 @@ export class EntrenamientoComponent implements OnInit {
     this.getEntrenamientoHoy();
     //this.seleccionarEntrenamiento();
     //console.log(this.entreno.pista.series);
+    //console.log(this.entrenoAux);
+    //console.log(this.entreno);
 
   }
 
@@ -154,7 +149,6 @@ export class EntrenamientoComponent implements OnInit {
             //console.log(i.id_entrenamiento);
 
             this.igualarValores(i);
-
             //console.log(JSON.parse(i.pista).pista);
             //console.log(this.entreno);
           }
@@ -168,12 +162,13 @@ export class EntrenamientoComponent implements OnInit {
     this.entreno.id_entrenamiento=i.id_entrenamiento;
     this.entreno.id_usuario=i.id_usuario;
     this.entreno.fecha=i.fecha;
-    let rodaje =JSON.parse(i.rodaje).rodaje;
+
+    let rodaje =JSON.parse(i.rodaje);
     this.entreno.rodaje.comentarios = rodaje.comentarios;
     this.entreno.rodaje.km=rodaje.km;
     this.entreno.rodaje.tiempo=rodaje.tiempo;
 
-    let pista = JSON.parse(i.pista).pista;
+    let pista = JSON.parse(i.pista);
     this.entreno.pista.comentarios= pista.comentarios;
     this.entreno.pista.series.descanso= pista.series.descanso;
     this.entreno.pista.series.distancia=pista.series.distancia;
@@ -183,10 +178,7 @@ export class EntrenamientoComponent implements OnInit {
     this.entreno.pista.multisalto.numero=pista.multisalto.numero;
     this.entreno.pista.multisalto.segundosTriple=pista.multisalto.segundosTriple;
 
-    //console.log(i);
-
-  //console.log(JSON.parse(i.gimnasio));
-    let gimnasio = JSON.parse(i.gimnasio).gimnasio;
+    let gimnasio = JSON.parse(i.gimnasio);
     this.entreno.gimnasio.comentarios= gimnasio.comentarios;
     this.entreno.gimnasio.tipo.pectoral.descanso= gimnasio.tipo.pectoral.descanso;
     this.entreno.gimnasio.tipo.pectoral.kg= gimnasio.tipo.pectoral.kg;
@@ -199,32 +191,62 @@ export class EntrenamientoComponent implements OnInit {
     this.entreno.gimnasio.tipo.cuadriceps.repeticiones= gimnasio.tipo.cuadriceps.repeticiones;
 
     return this.entreno;
-    //console.log(this.entreno.rodaje);
   }
 
   igualarValoresFormulario(i:any){
+    console.log(this.entreno);
+    console.log(i);
+
+    if (this.entreno.fecha=='') {
+      this.entreno.fecha=this.fecha;
+    }
+    if (this.entreno.id_usuario=='') {
+      this.entreno.id_usuario=this.id
+    }
+
+    if(i.rodaje.comentarios!=null)
     this.entreno.rodaje.comentarios = i.rodaje.comentarios;
+    if(i.rodaje.km!=null)
     this.entreno.rodaje.km=i.rodaje.km;
+    if(i.rodaje.tiempo!=null)
     this.entreno.rodaje.tiempo=i.rodaje.tiempo;
 
+    if(i.pista.comentarios!=null)
     this.entreno.pista.comentarios= i.pista.comentarios;
+    if(i.pista.series.descanso!=null)
     this.entreno.pista.series.descanso= i.pista.series.descanso;
+    if(i.pista.series.distancia!=null)
     this.entreno.pista.series.distancia=i.pista.series.distancia;
+    if(i.pista.series.numero!=null)
     this.entreno.pista.series.numero= i.pista.series.numero;
+    if(i.pista.series.tiempo!=null)
     this.entreno.pista.series.tiempo=i.pista.series.tiempo;
+    if(i.pista.multisalto.descanso!=null)
     this.entreno.pista.multisalto.descanso=i.pista.multisalto.descanso;
+    if(i.pista.multisalto.numero!=null)
     this.entreno.pista.multisalto.numero=i.pista.multisalto.numero;
+    if(i.pista.multisalto.segundosTriple!=null)
     this.entreno.pista.multisalto.segundosTriple=i.pista.multisalto.segundosTriple;
 
+    if(i.gimnasio.comentarios!=null)
     this.entreno.gimnasio.comentarios= i.gimnasio.comentarios;
+    if(i.gimnasio.tipo.pectoral.descanso!=null)
     this.entreno.gimnasio.tipo.pectoral.descanso= i.gimnasio.tipo.pectoral.descanso;
+    if(i.gimnasio.tipo.pectoral.kg!=null)
     this.entreno.gimnasio.tipo.pectoral.kg= i.gimnasio.tipo.pectoral.kg;
+    if(i.gimnasio.tipo.pectoral.repeticiones!=null)
     this.entreno.gimnasio.tipo.pectoral.repeticiones= i.gimnasio.tipo.pectoral.repeticiones;
+    if(i.gimnasio.tipo.biceps.descanso!=null)
     this.entreno.gimnasio.tipo.biceps.descanso= i.gimnasio.tipo.biceps.descanso;
+    if(i.gimnasio.tipo.biceps.kg!=null)
     this.entreno.gimnasio.tipo.biceps.kg= i.gimnasio.tipo.biceps.kg;
+    if(i.gimnasio.tipo.biceps.repeticiones!=null)
     this.entreno.gimnasio.tipo.biceps.repeticiones= i.gimnasio.tipo.biceps.repeticiones;
+    if(i.gimnasio.tipo.cuadriceps.descanso!=null)
     this.entreno.gimnasio.tipo.cuadriceps.descanso= i.gimnasio.tipo.cuadriceps.descanso;
+    if(i.gimnasio.tipo.cuadriceps.kg!=null)
     this.entreno.gimnasio.tipo.cuadriceps.kg= i.gimnasio.tipo.cuadriceps.kg;
+    if(i.gimnasio.tipo.cuadriceps.repeticiones!=null)
     this.entreno.gimnasio.tipo.cuadriceps.repeticiones= i.gimnasio.tipo.cuadriceps.repeticiones;
 
     return this.entreno;
@@ -236,8 +258,19 @@ export class EntrenamientoComponent implements OnInit {
     //console.log(this.formularioEntreno.value);
     //console.log( JSON.stringify(this.formularioEntreno.value));
     //console.log(entreno);
+    //console.log(this.formularioEntreno.value);
     let aux=this.igualarValoresFormulario(this.formularioEntreno.value);
     console.log(aux);
+    console.log(JSON.stringify(aux));
+    console.log(JSON.stringify(aux.gimnasio));
+
+    let rodaje= JSON.stringify(aux.rodaje);
+    let pista= JSON.stringify(aux.pista);
+    let gimnasio= JSON.stringify(aux.gimnasio);
+
+
+    this.apiService.postEntreno(aux.id_usuario, aux.fecha, rodaje, pista, gimnasio)
+    .pipe(first()).subscribe(data=>console.log('va benne'));
 
   }
 

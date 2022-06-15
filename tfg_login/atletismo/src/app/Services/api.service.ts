@@ -76,4 +76,14 @@ export class ApiService {
   getListadoAtletas(){
     return this.httpClient.get<any[]>(`http://localhost/tfg_mascota/tfg_login/atletismo/php/getListadoAtletas.php`)
   }
+
+  public postEntreno(id_usuario,fecha,rodaje,pista,gimnasio) {
+    return this.httpClient
+      .post<any>('http://localhost/tfg_mascota/tfg_login/atletismo/php/postEntrenamiento.php', { id_usuario,fecha,rodaje,pista,gimnasio })
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      );
+  }
 }
