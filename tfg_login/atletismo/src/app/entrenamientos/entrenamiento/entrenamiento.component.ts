@@ -60,6 +60,9 @@ export class EntrenamientoComponent implements OnInit {
     }
   };
 
+  insertarOK:boolean;
+  modificarOK:boolean;
+
 
 
   formularioEntreno: FormGroup;
@@ -78,13 +81,14 @@ export class EntrenamientoComponent implements OnInit {
     }
     this.id = localStorage.getItem('idAtleta');
     this.fecha = this.activatedRoute.snapshot.params['date'];
-    //this.listadoEjercicios();
+    this.insertarOK=false;
+    this.modificarOK=false;
     this.crearFormulario();
+
+    if (this.disabled) {
+      this.formularioEntreno.disable();
+    }
     this.getEntrenamientoHoy();
-    //this.seleccionarEntrenamiento();
-    //console.log(this.entreno.pista.series);
-    //console.log(this.entrenoAux);
-    //console.log(this.entreno);
 
   }
 
@@ -139,22 +143,13 @@ export class EntrenamientoComponent implements OnInit {
 
   getEntrenamientoHoy(){
     this.apiService.getEntrenamiento().subscribe(data=>{
-      //console.log(data);
       for(let i of data){
         if (i.fecha== this.fecha) {
           if (i.id_usuario==this.id) {
-            //this.entrenamientos.push(i);
-
-            //console.log(JSON.parse(i.pista));
-            //console.log(i.id_entrenamiento);
-
             this.igualarValores(i);
-            //console.log(JSON.parse(i.pista).pista);
-            //console.log(this.entreno);
           }
         }
       }
-      //console.log(this.entrenamientos);
     })
   }
 
@@ -255,10 +250,6 @@ export class EntrenamientoComponent implements OnInit {
 
 
   guardarinfo(entreno:any){
-    //console.log(this.formularioEntreno.value);
-    //console.log( JSON.stringify(this.formularioEntreno.value));
-    //console.log(entreno);
-    //console.log(this.formularioEntreno.value);
     let aux=this.igualarValoresFormulario(this.formularioEntreno.value);
     console.log(aux);
     console.log(JSON.stringify(aux));
@@ -270,14 +261,17 @@ export class EntrenamientoComponent implements OnInit {
 
     if(aux.id_entrenamiento==''|| aux.id_entrenamiento==null){
       this.apiService.postEntreno(aux.id_usuario, aux.fecha, rodaje, pista, gimnasio)
-    .pipe(first()).subscribe(data=>console.log('entrenamiento insertado'));
+    .pipe(first()).subscribe(data=>{
+      console.log(`entrenamiento insertado:${data}`);
+      this.insertarOK=true;
+    });
     }else{
       this.apiService.updateEntreno(aux.id_entrenamiento,aux.id_usuario, aux.fecha, rodaje, pista, gimnasio)
-    .pipe(first()).subscribe(data=>console.log('entrenamiento modificado'));
+    .pipe(first()).subscribe(data=>{
+      console.log(`entrenamiento modificado: ${data}`)
+      this.modificarOK=true;
+    });
     }
-
-
   }
-
 
 }

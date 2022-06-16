@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from './Services/api.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent {
   loginbtn: boolean;
   logoutbtn: boolean;
 
-  constructor(private dataService: ApiService, private router: Router) {
+  constructor(private dataService: ApiService, private router: Router, private location: Location) {
     dataService.getLoggedInName.subscribe((name) => this.changeName(name));
     if (this.dataService.isLoggedIn()) {
       console.log('loggedin');
@@ -33,4 +34,8 @@ export class AppComponent {
     this.router.navigate(['/login']);
     localStorage.clear();
   }
+  goBack(){
+    this.location.back();
+  }
+
 }

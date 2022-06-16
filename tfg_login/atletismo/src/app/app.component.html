@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
     <div class="collapse navbar-collapse" id="navbarsExample">
         <div class="navbar-nav mr-auto">
-            <button type="button" *ngIf="logoutbtn" class="btn btn-block" (click)="logout()">Cerrar Sesion</button>
+            <button type="button" *ngIf="logoutbtn" class="btn btn-outline-secondary btn-block" (click)="goBack()">Atrás</button>
+            <button type="button" *ngIf="logoutbtn" class="btn btn-outline-danger btn-block" (click)="logout()">Cerrar Sesion</button>
         </div>
     </div>
 </nav>
