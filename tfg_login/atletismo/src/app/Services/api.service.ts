@@ -86,4 +86,12 @@ export class ApiService {
         })
       );
   }
+  public updateEntreno(id_entrenamiento,id_usuario, fecha, rodaje, pista, gimnasio){
+    return this.httpClient.put<any>('http://localhost/tfg_mascota/tfg_login/atletismo/php/updateEntrenamiento.php', { id_entrenamiento,id_usuario,fecha,rodaje,pista,gimnasio })
+    .pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
 }

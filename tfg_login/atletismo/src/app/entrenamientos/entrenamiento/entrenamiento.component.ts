@@ -268,9 +268,14 @@ export class EntrenamientoComponent implements OnInit {
     let pista= JSON.stringify(aux.pista);
     let gimnasio= JSON.stringify(aux.gimnasio);
 
+    if(aux.id_entrenamiento==''|| aux.id_entrenamiento==null){
+      this.apiService.postEntreno(aux.id_usuario, aux.fecha, rodaje, pista, gimnasio)
+    .pipe(first()).subscribe(data=>console.log('entrenamiento insertado'));
+    }else{
+      this.apiService.updateEntreno(aux.id_entrenamiento,aux.id_usuario, aux.fecha, rodaje, pista, gimnasio)
+    .pipe(first()).subscribe(data=>console.log('entrenamiento modificado'));
+    }
 
-    this.apiService.postEntreno(aux.id_usuario, aux.fecha, rodaje, pista, gimnasio)
-    .pipe(first()).subscribe(data=>console.log('va benne'));
 
   }
 
