@@ -12,6 +12,7 @@ import { Users } from '../models/users';
 })
 export class LoginComponent implements OnInit {
   angForm: FormGroup;
+  mal:boolean;
   constructor(
     private fb: FormBuilder,
     private dataService: ApiService,
@@ -32,7 +33,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.mal=false;
+  }
   postdata(angForm1: { value: { email: String; password: String } }) {
     this.dataService
       .userlogin(angForm1.value.email, angForm1.value.password)
@@ -58,7 +61,7 @@ export class LoginComponent implements OnInit {
         (error) => {
           console.log(this.angForm);
           console.log(this.passwordNoValido);
-          alert('User name or password is incorrect');
+          this.mal=true;
         }
       );
   }
