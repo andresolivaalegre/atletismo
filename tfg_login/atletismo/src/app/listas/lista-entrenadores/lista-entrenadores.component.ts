@@ -23,14 +23,11 @@ export class ListaEntrenadoresComponent implements OnInit {
 
   listadoEntrenadores(){
     this.apiService.getAllUsers().subscribe(data=>{
-      console.log(data);
       for(let i of data){
         if (i.entrenador=== '1') {
-          console.log(i);
           this.entrenadores.push(i);
         }
       }
-      console.log(this.entrenadores);
     })
   }
 
@@ -39,7 +36,6 @@ export class ListaEntrenadoresComponent implements OnInit {
   }
 
   verListaAtletas(idEntrenador){
-    console.log(idEntrenador);
     localStorage.setItem('idEntrenador', idEntrenador);
     this.router.navigate(['/listadoAtletas']);
   }

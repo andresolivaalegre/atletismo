@@ -23,15 +23,48 @@ export class ApiService {
       );
   }
 
-  public userregistration(name: any, email: any, pwd: any) {
+
+  public registroGrupo(id_grupo: any, id_entrenador:any, id_atleta:any, nombre:any) {
     return this.httpClient
-      .post<any>(this.baseUrl + '/register.php', { name, email, pwd })
+      .post<any>(this.baseUrl + '/registerGrupo.php', { id_grupo, id_entrenador, id_atleta, nombre })
+      .pipe(
+        map((data) => {
+          return data;
+        })
+      );
+  }
+
+  public obtenerIdUsuario(email:any) {
+    console.log("Mira abajo");
+    this.getListadoAtletas().subscribe(data=>{
+      console.log(data);
+      console.log("Mira arriba");
+      
+      for(let i of data){
+        console.log("email:", email)
+        console.log("otro email:", i.email);
+        if (i.email.indexOf(email)!==-1) {
+          return i.id;
+        }
+      }
+      console.log("No ha introducido en bbdd");
+      return "-1";
+    })
+  }
+
+  public userregistration(name: any, email: any, pwd: any, esEntrenador:any) {
+    return this.httpClient
+      .post<any>(this.baseUrl + '/register.php', { name, email, pwd, esEntrenador })
       .pipe(
         map((Users) => {
           return Users;
         })
       );
   }
+
+  public tamañoLista(){
+    return this.httpClient.get<Users[]>("http://localhost/tfg_mascota/tfg_login/atletismo/php/getAllUsers.php").subscribe.length;
+}
 
   //token
   setToken(token: string) {

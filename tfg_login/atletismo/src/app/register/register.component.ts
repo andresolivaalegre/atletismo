@@ -9,6 +9,8 @@ import {
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from '../Services/api.service';
+import { stringify } from 'querystring';
+import { waitForAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +19,10 @@ import { ApiService } from '../Services/api.service';
 })
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
+  id:any;
+  incluido=false;
+  anterior:any;
+
   constructor(
     private fb: FormBuilder,
     private dataService: ApiService,
@@ -36,31 +42,50 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       password: ['', Validators.required],
       mobile: ['', Validators.required],
+      esEntrenador: ['', Validators.required],
+      grupo: ['', Validators.required],
     });
   }
 
   ngOnInit() {}
 
-  postdata(angForm1: { value: { name: any; email: any; password: any } }) {
+  postdata(angForm1: { value: { name: any; email: any; password: any; grupo: any; esEntrenador:any } }) {
 
-    this.dataService
+    console.log("tamaño inicial",this.dataService.tamañoLista());
+    this.dataService    //Primero registramos el nombre, mail, password, y si es entrenador en la tabla de usuarios
       .userregistration(
         angForm1.value.name,
         angForm1.value.email,
-        angForm1.value.password
+        angForm1.value.password,
+        angForm1.value.esEntrenador 
       )
       .pipe(first())
       .subscribe(
         (data) => {
           this.router.navigate(['listadoEntrenadores']); //boton a lista de entrenadores
         },
-
         (error) => {}
       );
 
-      //get usuarios, pillamos el id
-      //post hacioa la tabla de los grupos con el id del atleta, el del entrenador del grupo y en nombre del atleta
+      
+
+      if(angForm1.value.esEntrenador=="0"){  
+          this.id =3;
+        //Si no es entrenador obtenemos el id que se ha generado automaticamente
+      this.dataService.registroGrupo(   //Registramos en la tabla de grupos el nombre, grupo, y entrenador
+        angForm1.value.grupo,
+        angForm1.value.grupo,
+        this.id,
+        angForm1.value.name
+      );
+      }
+  
+
+      console.log("tamaño final",this.dataService.tamañoLista());
+
   }
+
+
 
   get email() {
     return this.angForm.get('email');
