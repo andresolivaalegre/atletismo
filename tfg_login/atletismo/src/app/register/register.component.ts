@@ -55,12 +55,11 @@ export class RegisterComponent implements OnInit {
     this.entrenadorBien=false;
     this.atletaBien=false;
     this.entrenadorOK=false;
-    this.verEntrenadores=true
+    this.verEntrenadores=true;
     this.dataService.getAllUsers().subscribe(data=>{
       for(let j of data){
         if (j.entrenador==='1') {
           console.log(data);
-
           this.entrenadores.push(j);
         }
       }
@@ -68,14 +67,31 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  onChange(e){
+    if (!e.target.checked) {
+      this.verEntrenadores=true
+    }
+    if (e.target.checked) {
+      this.verEntrenadores=false
+    }
+  }
+
   postdata(angForm1: { value: { name: any; email: any; password: any; grupo: any; esEntrenador:any } }) {
+
+    let entrenador;
+    if (angForm1.value.esEntrenador) {
+      entrenador=1;
+    }else
+      entrenador=0;
+    console.log(angForm1);
+    console.log(entrenador);
 
     this.dataService
       .userregistration(
         angForm1.value.name,
         angForm1.value.email,
         angForm1.value.password,
-        angForm1.value.esEntrenador
+        entrenador
       )
       .pipe(first())
       .subscribe(
@@ -102,7 +118,7 @@ export class RegisterComponent implements OnInit {
     }, 500);
 
     setTimeout(() => {
-      if(angForm1.value.esEntrenador=="0"){
+      if(entrenador=="0"){
       console.log('identrenador:'+angForm1.value.grupo+'idatleta:'+this.id+'nombre:'+angForm1.value.name);
       this.dataService.registroGrupo(
         angForm1.value.grupo,
