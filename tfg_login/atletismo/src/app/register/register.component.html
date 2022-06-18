@@ -51,10 +51,16 @@
                     <small class="text-danger"></small>
                 </div>
 
-                <div class="form-group">
-                    <label for="grupo">Grupo de entrenamiento(Solo rellenar si es atleta)</label>
+                <div class="form-group" *ngIf="verEntrenadores">
+                    <!--<label for="grupo">Grupo de entrenamiento(Solo rellenar si es atleta)</label>
                     <input class="form-control" type="text" name="grupo" formControlName="grupo" autocomplete="off" class="form-control input-sm" placeholder="grupo">
-                    <small class="text-danger"></small>
+                    <small class="text-danger"></small>-->
+                    <label for="control1">
+                      Selecciona al entrenador</label>
+                    <select class="form-control form-select" formControlName="grupo" name="grupo" id="control1">
+                      <option selected value="">Seleccione aqui</option>
+                      <option *ngFor="let entrenador of entrenadores"  [value]="entrenador.id">{{entrenador.name}}</option>
+                    </select>
                 </div>
 
 

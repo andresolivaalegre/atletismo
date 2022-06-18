@@ -24,6 +24,9 @@ export class RegisterComponent implements OnInit {
   atletaBien=false;
   entrenadorOK=false;
 
+  verEntrenadores=false;
+  entrenadores:any[]=[]
+
   constructor(
     private fb: FormBuilder,
     private dataService: ApiService,
@@ -52,6 +55,17 @@ export class RegisterComponent implements OnInit {
     this.entrenadorBien=false;
     this.atletaBien=false;
     this.entrenadorOK=false;
+    this.verEntrenadores=true
+    this.dataService.getAllUsers().subscribe(data=>{
+      for(let j of data){
+        if (j.entrenador==='1') {
+          console.log(data);
+
+          this.entrenadores.push(j);
+        }
+      }
+    })
+
   }
 
   postdata(angForm1: { value: { name: any; email: any; password: any; grupo: any; esEntrenador:any } }) {
