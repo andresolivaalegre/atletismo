@@ -9,8 +9,6 @@ import {
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from '../Services/api.service';
-import { stringify } from 'querystring';
-import { waitForAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +20,9 @@ export class RegisterComponent implements OnInit {
   id:any;
   incluido=false;
   anterior:any;
+  entrenadorBien=false;
+  atletaBien=false;
+  entrenadorOK=false;
 
   constructor(
     private fb: FormBuilder,
@@ -47,41 +48,67 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.entrenadorBien=false;
+    this.atletaBien=false;
+    this.entrenadorOK=false;
+  }
 
   postdata(angForm1: { value: { name: any; email: any; password: any; grupo: any; esEntrenador:any } }) {
 
-    console.log("tamaño inicial",this.dataService.tamañoLista());
-    this.dataService    //Primero registramos el nombre, mail, password, y si es entrenador en la tabla de usuarios
+    this.dataService
       .userregistration(
         angForm1.value.name,
         angForm1.value.email,
         angForm1.value.password,
-        angForm1.value.esEntrenador 
+        angForm1.value.esEntrenador
       )
       .pipe(first())
       .subscribe(
         (data) => {
-          this.router.navigate(['listadoEntrenadores']); //boton a lista de entrenadores
+          setTimeout(() => {
+            console.log('registro bien');
+            this.entrenadorOK=true;
+
+          }, 1);
+
         },
         (error) => {}
       );
 
-      
+    setTimeout(() => {
+      this.dataService.getAllUsers().subscribe(data=>{
+        for(let i of data){
+          if (i.email==angForm1.value.email) {
+            this.id=i.id;
+            console.log(this.id);
+          }
+        }
+      })
+    }, 500);
 
-      if(angForm1.value.esEntrenador=="0"){  
-          this.id =3;
-        //Si no es entrenador obtenemos el id que se ha generado automaticamente
-      this.dataService.registroGrupo(   //Registramos en la tabla de grupos el nombre, grupo, y entrenador
-        angForm1.value.grupo,
+    setTimeout(() => {
+      if(angForm1.value.esEntrenador=="0"){
+      console.log('identrenador:'+angForm1.value.grupo+'idatleta:'+this.id+'nombre:'+angForm1.value.name);
+      this.dataService.registroGrupo(
         angForm1.value.grupo,
         this.id,
         angForm1.value.name
+      ).pipe(first())
+      .subscribe(
+        (data) => {
+          console.log(`registro grupo bien ${data}`);
+          this.atletaBien=true;
+        },
+        (error) => {console.log(error);}
       );
-      }
-  
+      }else{
+        if (this.entrenadorOK) {
+          this.entrenadorBien=true
 
-      console.log("tamaño final",this.dataService.tamañoLista());
+        }
+      }
+    }, 1000);
 
   }
 

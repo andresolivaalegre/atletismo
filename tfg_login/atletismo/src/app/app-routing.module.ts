@@ -30,7 +30,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthguardGuard],
   },
-  { path: '**', pathMatch: 'full', redirectTo: 'home' },
+  { path: '**', pathMatch: 'full', redirectTo: 'login' },
 ];
 
 @NgModule({

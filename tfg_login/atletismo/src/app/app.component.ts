@@ -35,7 +35,10 @@ export class AppComponent {
     localStorage.clear();
   }
   goBack(){
-    this.location.back();
+    if (this.router.url ==='/listadoEntrenadores' || this.router.url === '/calendario') {
+      this.logout();
+    }else
+      this.location.back();
   }
 
 }
