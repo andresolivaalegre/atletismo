@@ -138,8 +138,12 @@ export class RegisterComponent implements OnInit {
 
         }
       }
+
     }, 1000);
 
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   }
 
 
