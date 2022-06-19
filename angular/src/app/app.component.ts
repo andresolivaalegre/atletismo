@@ -9,8 +9,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  loginbtn: boolean=false;
-  logoutbtn: boolean=false;
+  loginbtn: boolean;
+  logoutbtn: boolean;
 
   constructor(private dataService: ApiService, private router: Router, private location: Location) {
     dataService.getLoggedInName.subscribe((name) => this.changeName(name));
