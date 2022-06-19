@@ -1,0 +1,10 @@
+<button type="button" class="btn btn-outline-success btn-block" (click)="registro()">Registrar usuario</button>
+<br><br>
+
+<div class="row ml-5">
+    <div class="col-md-3 mb-5" *ngFor="let entrenador of entrenadores">
+
+        <h2 class="card-title">{{entrenador.name}}</h2>
+        <button (click)="verListaAtletas(entrenador.id)" class="btn btn-primary">Lista de Atletas</button>
+    </div>
+</div>

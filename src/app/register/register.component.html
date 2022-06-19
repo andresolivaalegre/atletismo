@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+</svg>
+
+<h2 class="text-center">Registro</h2>
+<div *ngIf="entrenadorBien" class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+        El Entrenador se ha registrado correctamente
+    </div>
+</div>
+
+<div *ngIf="atletaBien" class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+        El Atleta se ha registrado correctamente
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="jumbotron">
+            <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input class="form-control" [class.is-invalid]="nameNoValido" type="text" name="name" formControlName="name" autocomplete="off" class="form-control input-sm" placeholder="Name">
+                    <small class="text-danger" *ngIf="nameNoValido"> Introduzca un nombre</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" [class.is-invalid]="emailNoValido" type="email" name="email" formControlName="email" autocomplete="off" class="form-control input-sm" placeholder="Email">
+                    <small class="text-danger" *ngIf="emailNoValido"> Introduzca un email válido</small>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="Password">Contraseña</label>
+                    <input class="form-control" [class.is-invalid]="passwordNoValido" type="password" name="Password" formControlName="password" autocomplete="off" class="form-control input-sm" placeholder="Password">
+                    <small class="text-danger" *ngIf="passwordNoValido"> Introduzca una contraseña</small>
+
+                </div>
+
+                <div class="form-group">
+                    <!--<input class="form-check-input" type="checkbox" name="esEntrenador" formControlName="esEntrenador" autocomplete="off" class="form-control input-sm" placeholder="0/1"> Atleta</label>-->
+                    <input type="checkbox" (change)="onChange($event)" formControlName="esEntrenador" id="esEntrenador" class="form-check-input">
+                    <label for="esEntrenador">¿Entrenador?</label>
+
+                </div>
+
+                <div class="form-group" *ngIf="verEntrenadores">
+                    <!--<label for="grupo">Grupo de entrenamiento(Solo rellenar si es atleta)</label>
+                    <input class="form-control" type="text" name="grupo" formControlName="grupo" autocomplete="off" class="form-control input-sm" placeholder="grupo">
+                    <small class="text-danger"></small>-->
+                    <label for="control1">
+                      Selecciona al entrenador</label>
+                    <select class="form-control form-select" formControlName="grupo" name="grupo" id="control1">
+                      <option selected value="">Seleccione aqui</option>
+                      <option *ngFor="let entrenador of entrenadores"  [value]="entrenador.id">{{entrenador.name}}</option>
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn btn-success">Register</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
