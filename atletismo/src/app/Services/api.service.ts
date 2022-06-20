@@ -8,7 +8,7 @@ import { Users } from '../models/users';
 })
 export class ApiService {
   redirectUrl: string;
-  baseUrl: string = 'http://localhost/tfg_login/atletismo/php';
+  baseUrl: string = 'http://localhost/atletismo/atletismo/php';
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   constructor(private httpClient: HttpClient) {}
   public userlogin(username: any, password: any) {
@@ -26,7 +26,7 @@ export class ApiService {
 
   public registroGrupo( id_entrenador, id_atleta, nombre) {
     return this.httpClient
-      .post<any>('http://localhost/tfg_mascota/tfg_login/atletismo/php/registroGrupo.php', {  id_entrenador, id_atleta, nombre })
+      .post<any>('http://localhost/atletismo/atletismo/php/registroGrupo.php', {  id_entrenador, id_atleta, nombre })
       .pipe(
         map((data) => {
           return data;
@@ -36,7 +36,7 @@ export class ApiService {
 
   public userregistration(name: any, email: any, pwd: any, esEntrenador:any) {
     return this.httpClient
-      .post<any>('http://localhost/tfg_mascota/tfg_login/atletismo/php/register.php', { name, email, pwd, esEntrenador })
+      .post<any>('http://localhost/atletismo/atletismo/php/register.php', { name, email, pwd, esEntrenador })
       .pipe(
         map((Users) => {
           return Users;
@@ -67,12 +67,12 @@ export class ApiService {
   }
 
   getAllUsers(){
-    return this.httpClient.get<Users[]>("http://localhost/tfg_mascota/tfg_login/atletismo/php/getAllUsers.php");
+    return this.httpClient.get<Users[]>("http://localhost/atletismo/atletismo/php/getAllUsers.php");
 
   }
 
   getAllExercises(){
-    return this.httpClient.get<any[]>("http://localhost/tfg_mascota/tfg_login/atletismo/php/getAllExercises.php");
+    return this.httpClient.get<any[]>("http://localhost/atletismo/atletismo/php/getAllExercises.php");
 
   }
 
@@ -81,15 +81,15 @@ export class ApiService {
   }
 
   getEntrenamiento(){
-    return this.httpClient.get<any[]>(`http://localhost/tfg_mascota/tfg_login/atletismo/php/getEntrenamiento.php`)
+    return this.httpClient.get<any[]>(`http://localhost/atletismo/atletismo/php/getEntrenamiento.php`)
   }
   getListadoAtletas(){
-    return this.httpClient.get<any[]>(`http://localhost/tfg_mascota/tfg_login/atletismo/php/getListadoAtletas.php`)
+    return this.httpClient.get<any[]>(`http://localhost/atletismo/atletismo/php/getListadoAtletas.php`)
   }
 
   public postEntreno(id_usuario,fecha,rodaje,pista,gimnasio) {
     return this.httpClient
-      .post<any>('http://localhost/tfg_mascota/tfg_login/atletismo/php/postEntrenamiento.php', { id_usuario,fecha,rodaje,pista,gimnasio })
+      .post<any>('http://localhost/atletismo/atletismo/php/postEntrenamiento.php', { id_usuario,fecha,rodaje,pista,gimnasio })
       .pipe(
         map((data) => {
           return data;
@@ -97,7 +97,7 @@ export class ApiService {
       );
   }
   public updateEntreno(id_entrenamiento,id_usuario, fecha, rodaje, pista, gimnasio){
-    return this.httpClient.put<any>('http://localhost/tfg_mascota/tfg_login/atletismo/php/updateEntrenamiento.php', { id_entrenamiento,id_usuario,fecha,rodaje,pista,gimnasio })
+    return this.httpClient.put<any>('http://localhost/atletismo/atletismo/php/updateEntrenamiento.php', { id_entrenamiento,id_usuario,fecha,rodaje,pista,gimnasio })
     .pipe(
       map((data) => {
         return data;
