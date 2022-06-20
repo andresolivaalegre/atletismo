@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ApiService } from './Services/api.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -8,9 +8,9 @@ import { Location } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  loginbtn: boolean;
-  logoutbtn: boolean;
+export class AppComponent{
+  loginbtn: boolean = false;
+  logoutbtn: boolean = false;
 
   constructor(private dataService: ApiService, private router: Router, private location: Location) {
     dataService.getLoggedInName.subscribe((name) => this.changeName(name));
@@ -23,9 +23,7 @@ export class AppComponent implements OnInit {
       this.logoutbtn = false;
     }
   }
-  ngOnInit(): void {
-    this.changeName(false);
-  }
+
   private changeName(name: boolean): void {
     this.logoutbtn = name;
     this.loginbtn = !name;
