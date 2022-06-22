@@ -13,7 +13,7 @@ if (isset($postdata) && !empty($postdata)) {
   $fecha = trim($request->fecha);
   $id_entrenamiento = mysqli_real_escape_string($mysqli, trim($request->id_entrenamiento));
   $id_usuario = mysqli_real_escape_string($mysqli, trim($request->id_usuario));
-  $sql = "UPDATE listado_entrenamientos SET id_usuario='$id_usuario',fecha='$fecha',rodaje='$rodaje',pista='$pista',gimnasio='$gimnasio' WHERE id_entrenamiento='$id_entrenamiento'";
+  $sql = "UPDATE listado_entrenamientosp SET id_usuario='$id_usuario',fecha='$fecha',rodaje='$rodaje',pista='$pista',gimnasio='$gimnasio' WHERE id_entrenamiento='$id_entrenamiento'";
   if ($mysqli->query($sql) === TRUE) {
     $authdata = [
       'rodaje' => $rodaje,
