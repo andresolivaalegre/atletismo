@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { ListaEntrenadoresComponent } from './listas/lista-entrenadores/lista-entrenadores.component';
 import { ListaAtletasComponent } from './listas/lista-atletas/lista-atletas.component';
@@ -33,10 +31,8 @@ import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent,
     HeadComponent,
     FooterComponent,
     ListaEntrenadoresComponent,
