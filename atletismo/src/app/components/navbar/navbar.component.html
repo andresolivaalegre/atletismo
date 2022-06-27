@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <div class="collapse navbar-collapse" id="navbarsExample">
+        <div class="navbar-nav mr-auto">
+            <button type="button" *ngIf="logoutbtn" class="btn btn-outline-secondary btn-block" (click)="goBack()">Atrás</button>
+            <button type="button" *ngIf="logoutbtn" class="btn btn-outline-danger btn-block" (click)="logout()">Cerrar Sesion</button>
+            <button *ngIf="entrenador" type="button" class="btn btn-outline-success btn-block" (click)="registro()">Registrar usuario</button>
+        </div>
+    </div>
+    <div class="d-flex" *ngIf="entrenador">
+        <input class="form-control me-2" type="text" placeholder="Buscar entrenador" (keyup.enter)="buscarEntrenador(buscarTexto.value)" #buscarTexto>
+        <button (click)="buscarEntrenador(buscarTexto.value)" class="btn btn-outline-success" type="button">buscar</button>
+    </div>
+    <div class="d-flex" *ngIf="atleta">
+        <input class="form-control me-2" type="text" placeholder="Buscar atleta" (keyup.enter)="buscarAtleta(buscarTexto.value)" #buscarTexto>
+        <button (click)="buscarAtleta(buscarTexto.value)" class="btn btn-outline-success" type="button">buscar</button>
+    </div>
+</nav>

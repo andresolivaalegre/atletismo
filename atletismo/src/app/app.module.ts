@@ -27,6 +27,7 @@ import { MomentDateModule } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './formato-fechas';
 import {MatSelectModule} from '@angular/material/select';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     ListaEntrenadoresComponent,
     ListaAtletasComponent,
     CalendarioComponent,
-    EntrenamientoComponent
+    EntrenamientoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
