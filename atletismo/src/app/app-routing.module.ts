@@ -6,6 +6,7 @@ import { ListaEntrenadoresComponent } from './listas/lista-entrenadores/lista-en
 import { ListaAtletasComponent } from './listas/lista-atletas/lista-atletas.component';
 import { EntrenamientoComponent } from './entrenamientos/entrenamiento/entrenamiento.component';
 import { CalendarioComponent } from './entrenamientos/calendario/calendario.component';
+import { MeteorologiaComponent } from './components/meteorologia/meteorologia.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'listadoAtletas/:texto', component: ListaAtletasComponent},
   { path: 'entrenamiento/:date/:editar', component: EntrenamientoComponent},
   { path: 'calendario', component: CalendarioComponent},
+  { path: 'tiempo', component:MeteorologiaComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'login' },
 ];
 

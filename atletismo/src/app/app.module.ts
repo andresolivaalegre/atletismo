@@ -28,6 +28,7 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './formato-fechas';
 import {MatSelectModule} from '@angular/material/select';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MeteorologiaComponent } from './components/meteorologia/meteorologia.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ListaAtletasComponent,
     CalendarioComponent,
     EntrenamientoComponent,
-    NavbarComponent
+    NavbarComponent,
+    MeteorologiaComponent
   ],
   imports: [
     BrowserModule,

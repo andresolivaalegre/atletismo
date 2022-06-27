@@ -104,4 +104,8 @@ export class ApiService {
       })
     );
   }
+
+  public getTiempo(fecha:string){
+    return this.httpClient.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/madrid/${fecha}/${fecha}?unitGroup=metric&key=EMCP96KQG4N6BFYHT72ZUTJH9&contentType=json`)
+  }
 }
