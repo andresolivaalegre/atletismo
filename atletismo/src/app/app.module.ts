@@ -23,12 +23,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 
 
-
+import { ChartsModule } from 'ng2-charts';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMATS } from './formato-fechas';
 import {MatSelectModule} from '@angular/material/select';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MeteorologiaComponent } from './components/meteorologia/meteorologia.component';
+import { GraficaComponent } from './components/grafica/grafica.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MeteorologiaComponent } from './components/meteorologia/meteorologia.co
     CalendarioComponent,
     EntrenamientoComponent,
     NavbarComponent,
-    MeteorologiaComponent
+    MeteorologiaComponent,
+    GraficaComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ import { MeteorologiaComponent } from './components/meteorologia/meteorologia.co
     MomentDateModule,
     FormsModule,
     MatSelectModule,
+    ChartsModule,
   ],
   providers: [{provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}],
   bootstrap: [AppComponent]

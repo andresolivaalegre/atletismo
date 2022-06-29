@@ -56,8 +56,12 @@ export class CalendarioComponent implements OnInit {
   }
 
   setFechaString(fecha){
+    console.log(fecha.month);
     if (fecha.month<10&& fecha.month>=0) {
-      fecha.month = `0${fecha.month +1}`;
+      if (fecha.month==9) {
+        fecha.month = `${fecha.month +1}`;
+      }else
+        fecha.month = `0${fecha.month +1}`;
     }
     if (fecha.date<10&&fecha.date>0) {
       console.log(fecha.date);
