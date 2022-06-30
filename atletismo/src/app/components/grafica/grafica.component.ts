@@ -53,7 +53,7 @@ export class GraficaComponent implements OnInit {
 
   ngOnInit(): void {
     let fechas=this.getfechas();
-    for (let i = 1; i <= fechas; i++) {
+    for (let i = 0; i <= fechas; i++) {
       this.chartLabels.push(i);
     }
     this.getEntrenamientoHoy();
