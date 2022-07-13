@@ -13,6 +13,7 @@ export class CalendarioComponent implements OnInit {
   fechaString: string;
   id:any;
   idAtleta:any;
+  idGrafica:any
 
   constructor(private activatedRoute:ActivatedRoute, private router: Router) { }
 
@@ -22,6 +23,13 @@ export class CalendarioComponent implements OnInit {
     console.log(this.id);
     this.idAtleta = this.activatedRoute.snapshot.queryParamMap.get('idAtleta')||0;;
     console.log(this.idAtleta);
+
+    if(this.idAtleta==0){
+      this.idGrafica=this.id;
+    }else{
+      this.idGrafica=this.idAtleta
+    }
+
   }
 
   verEntrenamiento(){
